@@ -15,15 +15,15 @@ setup(
     name='tvdb_api',
     version='3.1.0',
 
-    author='dbr/Ben',
+    author='doudalidou/jy',
     description='Interface to thetvdb.com',
-    url='http://github.com/dbr/tvdb_api',
+    url='http://github.com/doudalidou/tvdb_api',
 
     long_description=long_description,
     long_description_content_type='text/markdown',
 
     py_modules=['tvdb_api'],
-    install_requires=['requests_cache~=0.9.6', 'requests~=2.28.1'],
+    install_requires=['requests_cache~=1.2.1', 'requests~=2.32.3'],
 
     classifiers=[
         "Intended Audience :: Developers",
