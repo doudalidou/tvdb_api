@@ -7,3 +7,4 @@ dist/*.tar.gz
 /htmlcov
 .vscode/settings.json
 *.sqlite
+tests/http_cache/*
