@@ -3,7 +3,7 @@
 
 `tvdb_api` is an easy to use interface to [thetvdb.com][tvdb]
 
-It supports Python 2.7, and 3.5 onwards
+It supports Python 3.9 onwards
 
 `tvnamer` has moved to a separate repository: [github.com/dbr/tvnamer][tvnamer] - it is a utility which uses `tvdb_api` to rename files from `some.show.s01e03.blah.abc.avi` to `Some Show - [01x03] - The Episode Name.avi` (which works by getting the episode name from `tvdb_api`)
 
@@ -27,6 +27,11 @@ You can easily install `tvdb_api` via `pip`
 You may need to use sudo, depending on your setup:
 
     sudo pip install --upgrade tvdb_api
+
+On Debian distro pip have been desactivated outside virtual environement.
+
+    python -m venv /path/to/new/virtual/environment
+     then proceed with the packe installation via pip
 
 ## Basic usage
 

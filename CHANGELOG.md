@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## `3.2` - 2024-06-21
 
-- Dropped support for Python 2. Only maintained versions of Python are supported (currently Python 3.7 onwards)
-- Support newer requests-cache version (0.6 onwards)
+- Dropped support for Python 2. Only maintained versions of Python are supported (currently Python 3.9 onwards) (by Doudalidou)
+- Support newer requests-cache version (1.2.1 onwards) (by Doudalidou)
   [PR #97](https://github.com/dbr/tvdb_api/pull/97)
 - Removed deprecated `tvdb_*` exceptions (e.g `tvdb_error` is now `TvdbError`)
 - Remove deprecated `Tvdb(forceConnect=...)` option

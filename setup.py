@@ -13,9 +13,10 @@ else:
 
 setup(
     name='tvdb_api',
-    version='3.1.0',
+    version='3.2.0',
 
-    author='doudalidou/jy',
+    author='dbr/Ben',
+    author_rev='doudalidou/jy',
     description='Interface to thetvdb.com',
     url='http://github.com/doudalidou/tvdb_api',
 
