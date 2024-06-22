@@ -606,7 +606,7 @@ class Tvdb:
                 cache_name=cache_dir,
                 include_get_headers=True,
             )
-            self.session.remove_expired_responses()
+            self.session.cache.delete(expired=True)
             self.config['cache_enabled'] = True
         elif cache is False:
             LOG.debug("Caching disabled")
@@ -621,7 +621,7 @@ class Tvdb:
                 cache_name=os.path.join(cache, "tvdb_api"),
                 include_get_headers=True,
             )
-            self.session.remove_expired_responses()
+            self.session.cache.delete(expired=True)
         else:
             LOG.debug("Using specified requests.Session")
             self.session = cache
@@ -712,7 +712,7 @@ class Tvdb:
 
             # fmt: off
             # No fmt because mangles noqa comment - https://github.com/psf/black/issues/195
-            if not cache_key or not self.session.cache.has_key(cache_key): # noqa: not a dict, has_key is part of requests-cache API
+            if not cache_key or not self.session.cache.contains(cache_key): # noqa: not a dict, contains is part of requests-cache API
                 self.authorize()
             # fmt: on
 

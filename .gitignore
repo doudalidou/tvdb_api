@@ -6,3 +6,4 @@ dist/*.tar.gz
 /.coverage
 /htmlcov
 .vscode/settings.json
+*.sqlite
