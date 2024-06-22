@@ -16,7 +16,8 @@ Example usage:
 """
 
 __author__ = "dbr/Ben"
-__version__ = "3.1.0"
+__author_rev__ = "doudalidou/jy"
+__version__ = "3.2.0"
 
 
 import sys
