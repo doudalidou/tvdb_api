@@ -245,10 +245,16 @@ class TestTvdbSearch:
         if cls.t is None:
             cls.t = tvdb_api.Tvdb(cache=get_test_cache_session(), banners=False)
 
-    def test_search_len(self):
-        """There should be only one result matching
+    def test_search_standardize_serie(self):
+        """There should be one result matching
         """
-        assert len(self.t['My Name Is Earl'].search('Faked My Own Death')) == 1
+        assert len(self.t['Total Access 24/7'].search('Episode #13')) == 1
+
+    def test_search_url_encoding_serie(self):
+        """There should be one result matching
+        """
+        assert len(self.t['Carnivàle'].search('The Day of the Dead')) == 1
+
 
     def test_search_checkname(self):
         """Checks you can get the episode name of a search result

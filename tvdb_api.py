@@ -22,6 +22,7 @@ __version__ = "3.2.0"
 
 import sys
 import os
+import re
 import time
 import getpass
 import tempfile
@@ -684,6 +685,12 @@ class Tvdb:
 
         return os.path.join(tempfile.gettempdir(), "tvdb_api-%s-py%s" % (uid, py_major))
 
+    def _standardize_serie_name(self, serie):
+        """Returns the serie name as alpha char and numerical only,
+        the other char are change to dash
+        """
+        return re.sub('[^0-9a-zA-Z]+', '-', str(serie).lower())
+
     def _load_url(self, url, data=None, language=None):
         """Return response from The TVDB API"""
 
@@ -818,9 +825,15 @@ class Tvdb:
         """This searches TheTVDB.com for the series name
         and returns the result list
         """
-        series = url_quote(series.encode("utf-8"))
+        serie_name = url_quote(series.encode("utf-8"))
         LOG.debug("Searching for show %s" % series)
-        series_resp = self._load_url(self.config['url_getSeries'] % (series))
+        series_resp = self._load_url(self.config['url_getSeries'] % (serie_name))
+
+        if not series_resp:
+            LOG.debug("Series result returned zero with url encoding, trying with standardize serie name")
+            serie_name =  self._standardize_serie_name(series)
+            series_resp = self._load_url(self.config['url_getSeries'] % (serie_name))
+
         if not series_resp:
             LOG.debug('Series result returned zero')
             raise TvdbShowNotFound(
