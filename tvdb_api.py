@@ -726,11 +726,16 @@ class Tvdb:
         errors = r.get('errors')
         r_data = r.get('data')
         links = r.get('links')
+        corrupted_links = False
 
         if error:
             if error == 'Resource not found':
                 # raise(TvdbResourceNotFound)
                 # handle no data at a different level so it is more specific
+                pass
+            elif error.lower() == 'no results for your query: map[]':
+                # handle corrupted links page data and force last page and raise no error
+                corrupted_links = True
                 pass
             elif error.lower() == 'not authorized':
                 # Note: Error string sometimes comes back as "Not authorized" or "Not Authorized"
@@ -748,11 +753,12 @@ class Tvdb:
                 pass
 
         if data and isinstance(data, list):
-            data.extend(r_data)
+            if r_data is not None: 
+                data.extend(r_data)
         else:
             data = r_data
 
-        if links and links['next']:
+        if links and links['next'] and not corrupted_links:
             url = url.split('?')[0]
             _url = url + "?page=%s" % links['next']
             self._load_url(_url, data=data)

@@ -127,6 +127,15 @@ class TestTvdbBasic:
         """
         assert 1 == 1
 
+    def test_load_url_multi_page_system(self):
+        """Checks _load_url next page corruption system
+        Some series episodes list does not return the correct total of page 
+        and next page in the links section.
+        The test should get the correct number of items from a knowed corrupted title
+        """
+        episode_count = len(self.t._load_url('https://api.thetvdb.com/series/82931/episodes', data=None, language='en'))
+        assert episode_count == 200
+
     def test_different_case(self):
         """Checks the auto-correction of show names is working.
         It should correct the weirdly capitalised 'sCruBs' to 'Scrubs'
