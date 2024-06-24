@@ -1,5 +1,9 @@
 # Changelog
 
+## `3.2.1` - 2024-06-22
+- Bug fix for `TVDB Api` error `No results for your query: map[]` thrown on a corrupted links section while getting incorrect page total and next page information (by Doudalidou)
+
+
 ## `3.2` - 2024-06-21
 
 - Dropped support for Python 2. Only maintained versions of Python are supported (currently Python 3.9 onwards) (by Doudalidou)

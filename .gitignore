@@ -9,3 +9,4 @@ dist/*.tar.gz
 *.sqlite
 tests/http_cache/*
 .vscode/*
+build/*

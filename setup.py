@@ -13,7 +13,7 @@ else:
 
 setup(
     name='tvdb_api',
-    version='3.2.0',
+    version='3.2.1',
 
     author='dbr/Ben',
     author_rev='doudalidou/jy',
