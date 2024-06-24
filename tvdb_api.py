@@ -736,6 +736,7 @@ class Tvdb:
             elif error.lower() == 'no results for your query: map[]':
                 # handle corrupted links page data and force last page and raise no error
                 corrupted_links = True
+                LOG.debug("found unexpected end of list, links section corrupted ?")
                 pass
             elif error.lower() == 'not authorized':
                 # Note: Error string sometimes comes back as "Not authorized" or "Not Authorized"
@@ -750,6 +751,7 @@ class Tvdb:
                 # raise(TvdbError(errors['invalidLanguage']))
                 # invalidLanguage does not mean there is no data
                 # there is just less data (missing translations)
+                LOG.debug("invalidLanguage, expecting less data (missing translations)")
                 pass
 
         if data and isinstance(data, list):
@@ -758,10 +760,13 @@ class Tvdb:
         else:
             data = r_data
 
-        if links and links['next'] and not corrupted_links:
-            url = url.split('?')[0]
-            _url = url + "?page=%s" % links['next']
-            self._load_url(_url, data=data)
+        if links and links['next']:
+            if corrupted_links:
+                LOG.debug("ending recursive data loading")
+            else:
+                url = url.split('?')[0]
+                _url = url + "?page=%s" % links['next']
+                self._load_url(_url, data=data)
 
         return data
 
