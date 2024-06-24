@@ -8,3 +8,4 @@ dist/*.tar.gz
 .vscode/settings.json
 *.sqlite
 tests/http_cache/*
+.vscode/*
